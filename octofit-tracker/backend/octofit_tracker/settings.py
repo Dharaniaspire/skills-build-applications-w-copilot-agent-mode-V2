@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+<<<<<<< HEAD
+=======
+import os
+>>>>>>> origin/main
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,11 +24,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+<<<<<<< HEAD
 SECRET_KEY = 'django-insecure-meobcwn5cbiah%vgy!zgshzs=d@t)x2h)^-t7fd_*vhi%z9vb#'
+=======
+SECRET_KEY = 'django-insecure-hb!v8!(z46!&&v+(zc54y)8ivon+w$8zs55gr4b2q0+1-3b=*1'
+>>>>>>> origin/main
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+<<<<<<< HEAD
 
 
 import os
@@ -33,11 +42,21 @@ CODESPACE_NAME = os.environ.get('CODESPACE_NAME')
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 if CODESPACE_NAME:
     ALLOWED_HOSTS.append(f'{CODESPACE_NAME}-8000.app.github.dev')
+=======
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    os.getenv('CODESPACE_NAME', 'localhost') + '-8000.app.github.dev' if os.getenv('CODESPACE_NAME') else 'localhost',
+]
+>>>>>>> origin/main
 
 
 # Application definition
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -46,6 +65,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+<<<<<<< HEAD
     'djongo',
     'corsheaders',
     'octofit_tracker',
@@ -55,6 +75,15 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+=======
+    'corsheaders',
+    'activities',
+]
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+>>>>>>> origin/main
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -84,6 +113,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'octofit_tracker.wsgi.application'
 
 
+<<<<<<< HEAD
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -95,6 +125,15 @@ DATABASES = {
         'CLIENT': {
             'host': 'mongodb://localhost:27017/',
         },
+=======
+# Database
+# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+>>>>>>> origin/main
     }
 }
 
@@ -131,18 +170,49 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
+<<<<<<< HEAD
 # Static files (CSS, JavaScript, Images)
+=======
+>>>>>>> origin/main
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
 
+<<<<<<< HEAD
 # CORS settings
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = ['*']
 CORS_ALLOW_METHODS = ['*']
 
+=======
+>>>>>>> origin/main
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+<<<<<<< HEAD
+=======
+
+# REST Framework Configuration
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+    ],
+}
+
+# CORS Configuration
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost',
+    'http://localhost:3000',
+    'http://127.0.0.1',
+    'http://127.0.0.1:3000',
+]
+
+if os.getenv('CODESPACE_NAME'):
+    CORS_ALLOWED_ORIGINS.append(f"https://{os.getenv('CODESPACE_NAME')}-8000.app.github.dev")
+    CORS_ALLOWED_ORIGINS.append(f"https://{os.getenv('CODESPACE_NAME')}-3000.app.github.dev")
+>>>>>>> origin/main
